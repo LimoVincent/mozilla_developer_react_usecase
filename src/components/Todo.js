@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Todo({ todo, toggleTaskCompleted }) {
+function Todo({ todo, toggleTaskCompleted, deleteTodo }) {
   const { name, completed, id } = todo
 
   return (
@@ -12,7 +12,7 @@ function Todo({ todo, toggleTaskCompleted }) {
           defaultChecked={completed}
           onChange={() => toggleTaskCompleted(id)}
         />
-      
+
         <label className='todo-label' htmlFor='todo-0'>
           {name}
         </label>
@@ -21,7 +21,11 @@ function Todo({ todo, toggleTaskCompleted }) {
         <button type='button' className='btn'>
           Edit <span className='visually-hidden'>Eat</span>
         </button>
-        <button type='button' className='btn btn__danger'>
+        <button
+          onClick={() => deleteTodo(id)}
+          type='button'
+          className='btn btn__danger'
+        >
           Delete <span className='visually-hidden'>Eat</span>
         </button>
       </div>

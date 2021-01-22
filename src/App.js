@@ -22,6 +22,11 @@ const App = ({ data }) => {
     setTodos(updatedTodos)
   }
 
+  const deleteTodo = (id) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id)
+    setTodos(updatedTodos)
+  }
+
   return (
     <div className='todoapp stack-large'>
       <h1>TodoMatic</h1>
@@ -42,7 +47,7 @@ const App = ({ data }) => {
         aria-labelledby='list-heading'
       >
         {todos.map((todo) => (
-          <Todo {...{ todo, toggleTaskCompleted }} key={todo.id} />
+          <Todo {...{ todo, toggleTaskCompleted, deleteTodo }} key={todo.id} />
         ))}
       </ul>
     </div>
