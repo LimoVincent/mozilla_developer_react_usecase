@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import { v4 as uuidv4 } from 'uuid'
 
 const data = [
-  { name: 'Eat', completed: true, id: 'todo-0' },
-  { name: 'Sleep', completed: false, id: 'todo-1' },
-  { name: 'Repeat', completed: false, id: 'todo-2' },
+  { name: 'Eat', completed: true, id: uuidv4() },
+  { name: 'Sleep', completed: false, id: uuidv4() },
+  { name: 'Repeat', completed: false, id: uuidv4() },
 ]
 
 ReactDOM.render(
   <React.StrictMode>
-    <App data = {data}/>
+    <App data={data} />
   </React.StrictMode>,
   document.getElementById('root')
 )
