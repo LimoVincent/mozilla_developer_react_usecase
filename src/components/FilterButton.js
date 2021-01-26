@@ -1,25 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function FilterButton() {
- return (
-   
-     <button type='button' className='btn toggle-btn' aria-pressed='true'>
-       <span className='visually-hidden'>Show </span>
-       <span>all</span>
-       <span className='visually-hidden'> tasks</span>
-     </button>
-     /* <button type='button' className='btn toggle-btn' aria-pressed='false'>
-       <span className='visually-hidden'>Show </span>
-       <span>Active</span>
-       <span className='visually-hidden'> tasks</span>
-     </button>
-     <button type='button' className='btn toggle-btn' aria-pressed='false'>
-       <span className='visually-hidden'>Show </span>
-       <span>Completed</span>
-       <span className='visually-hidden'> tasks</span>
-     </button> */
-   
- )
+function FilterButton({ name, isPressed, setFilter }) {
+  console.log(name)
+  return (
+    <button
+      onClick={() => setFilter(name)}
+      type='button'
+      className='btn toggle-btn'
+      aria-pressed={isPressed}
+    >
+      <span className='visually-hidden'>Show </span>
+      <span>{name}</span>
+      <span className='visually-hidden'> tasks</span>
+    </button>
+  )
 }
 
 export default FilterButton

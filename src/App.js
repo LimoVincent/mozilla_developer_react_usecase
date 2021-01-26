@@ -4,9 +4,18 @@ import FilterButton from './components/FilterButton'
 import Todo from './components/Todo'
 
 import { v4 as uuidv4 } from 'uuid'
-uuidv4()
+
+const FILTER_MAP = {
+  All: () => true,
+  Active: (todo) => !todo.completed,
+  Completed: (todo) => todo.completed,
+}
+
+const FILTER_NAMES = Object.keys(FILTER_MAP)
+
 const App = ({ data }) => {
   const [todos, setTodos] = useState(data)
+  const [filter, setFilter] = useState('All')
 
   const addTodos = (name) => {
     setTodos([...todos, { name: name, completed: false, id: uuidv4() }])
@@ -40,9 +49,15 @@ const App = ({ data }) => {
       <h1>TodoMatic</h1>
       <Form {...{ addTodos }} />
       <div className='filters btn-group stack-exception'>
-        <FilterButton />
-        <FilterButton />
-        <FilterButton />
+        {FILTER_NAMES.map((name) => (
+          <FilterButton
+            key={name}
+            name={name}
+            isPressed={name === filter}
+            setFilter={setFilter}
+            key={name}
+          />
+        ))}
       </div>
 
       <h2 id='list-heading'>
@@ -50,7 +65,7 @@ const App = ({ data }) => {
       </h2>
 
       <ul
-        role='list'
+        // role='list'
         className='todo-list stack-large stack-exception'
         aria-labelledby='list-heading'
       >
